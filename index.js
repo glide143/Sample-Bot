@@ -15,13 +15,13 @@ restService.use(bodyParser.json());
 restService.post('/echo', function(req, res) {
     var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.mathVal ? req.body.result.parameters.mathVal : "Di ko alam ang pinag sasabi mo.";
 
-    var mathVal = req.body.result.parameters.mathVal;
+
 
     var result = 0;
     
     var num = Number(req.body.result.parameters.num1);
     var num1 = Number(req.body.result.parameters.num2);
-    switch(mathVal){
+    switch(speech){
         case "Add":
             result = num + num1;
             break;
