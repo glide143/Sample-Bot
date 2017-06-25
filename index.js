@@ -53,6 +53,7 @@ restService.post('/echo', function(req, res) {
     });
 });*/
 
+/*
 function sumHandler (var num1,var num2) {
     var sum = num1 + num2;
     return sum;
@@ -73,6 +74,7 @@ function divHandler (var num1,var num2) {
     var div = num1 / num2;
     return div;
 }
+*/
 
 restService.post('/slack-test', function(req, res) {
 
