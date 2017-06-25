@@ -45,13 +45,13 @@ restService.post('/echo', function(req, res) {
     });
 });
 
-/*
+
 function sumHandler (var num1,var num2) {
     var sum = num1 + num2;
     return sum;
 }
 
-
+/*
 function subHandler (var num1,var num2) {
     var sub = num1 - num2;
     return sub;
