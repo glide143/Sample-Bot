@@ -46,7 +46,7 @@ restService.post('/echo', function(req, res) {
 });
 
 
-function sumHandler (var num1,var num2) {
+function sumHandler (num1, num2) {
     var sum = num1 + num2;
     return sum;
 }
