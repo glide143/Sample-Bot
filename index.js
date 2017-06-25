@@ -20,7 +20,7 @@ restService.post('/echo', function(req, res) {
     
     var num = Number(req.body.result.parameters.num1);
     var num1 = Number(req.body.result.parameters.num2);
-    switch(speech){
+    switch(mathVal){
         case "Add":
             result = sumHandler(num,num1);
             break;
