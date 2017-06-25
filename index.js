@@ -26,7 +26,7 @@ restService.post('/echo', function(req, res) {
             result = num + num1;
             break;
 
-    /*    case "Add":
+       case "Add":
             result = num + num1;
             break;
         case "Subtract":
@@ -38,6 +38,7 @@ restService.post('/echo', function(req, res) {
         case "Divide":
             result = num / num1;
             break;
+     /*
     default:
         speech = req.body.result.parameters.math : "Please choose amoung the four options";
         break;*/
