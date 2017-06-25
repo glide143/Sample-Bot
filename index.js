@@ -19,8 +19,8 @@ restService.post('/echo', function(req, res) {
     var sum = num + num1;
     
     return res.json({
-        speech: num,
-        displayText: num,
+        speech: sum,
+        displayText: sum,
         source: 'mel-webhook'
     });
 });
