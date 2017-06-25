@@ -21,7 +21,7 @@ restService.post('/echo', function(req, res) {
     
     var num = Number(req.body.result.parameters.num1);
     var num1 = Number(req.body.result.parameters.num2);
-    switch(speech){
+    /*switch(speech){
         case "Add":
             result = num + num1;
             break;
@@ -38,7 +38,7 @@ restService.post('/echo', function(req, res) {
         speech = req.body.result.parameters.math : "Please choose amoung the four options";
         break;
     }
-    return res.json({
+*/    return res.json({
         speech: result,
         displayText: result,
         source: 'mel-webhook'
