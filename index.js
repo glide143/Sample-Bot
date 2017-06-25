@@ -14,6 +14,8 @@ restService.use(bodyParser.json());
 restService.post('/echo', function(req, res) {
     var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.math ? req.body.result.parameters.math : "Di ko alam ang pinag sasabi mo.";
 
+    var mathVal = req.body.result.parameters.mathVal;
+
     var result = 0;
     
     var num = Number(req.body.result.parameters.num1);
