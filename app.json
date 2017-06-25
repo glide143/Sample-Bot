@@ -1,6 +1,6 @@
 {
-  "name": "Webhook-echo-sample",
-  "description": "Webhook echo sample",
+  "name": "mel-webhook",
+  "description": "Webhook",
   "repository": "https://github.com/SunilSyal/Webhook-and-API.AI-Samples.git",
   "keywords": ["api.ai", "natural language"]
 }

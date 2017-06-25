@@ -12,18 +12,56 @@ restService.use(bodyParser.urlencoded({
 restService.use(bodyParser.json());
 
 restService.post('/echo', function(req, res) {
-    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Di ko alam ang pinag sasabi mo."
+    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.math ? req.body.result.parameters.math : "Di ko alam ang pinag sasabi mo.";
+
+    var result = 0;
     
     var num = Number(req.body.result.parameters.num1);
     var num1 = Number(req.body.result.parameters.num2);
-    var sum = num + num1;
-    
+    switch(speech){
+        case "Add":
+            result = sumHandler(num,num1);
+            break;
+        case "Subtract":
+            result = subHandler(num,num1);
+            break;
+        case "Multipy":
+            result = multiHandler(num,num1);
+            break;
+        case "Divide":
+            result = divHandler(num,num2);
+            break;
+    default:
+        speech = req.body.result.parameters.math : "Please choose amoung the four options";
+        break;
+    }
     return res.json({
         speech: sum,
         displayText: sum,
         source: 'mel-webhook'
     });
 });
+
+function sumHandler (var num1,var num2) {
+    var sum = num1 + num2;
+    return sum;
+}
+
+
+function subHandler (var num1,var num2) {
+    var sub = num1 - num2;
+    return sub;
+}
+
+function multiHandler (var num1,var num2) {
+    var multi = num1 * num2;
+    return multi;
+}
+
+function divHandler (var num1,var num2) {
+    var div = num1 / num2;
+    return div;
+}
 
 restService.post('/slack-test', function(req, res) {
 
