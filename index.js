@@ -22,6 +22,9 @@ restService.post('/echo', function(req, res) {
     var num = Number(req.body.result.parameters.num1);
     var num1 = Number(req.body.result.parameters.num2);
     switch(speech){
+        case "Add":
+            result = num + num1;
+            break;
 
     /*    case "Add":
             result = num + num1;
