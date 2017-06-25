@@ -14,7 +14,7 @@ restService.use(bodyParser.json());
 restService.post('/echo', function(req, res) {
     var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.math ? req.body.result.parameters.mathVal : "Di ko alam ang pinag sasabi mo.";
 
-    var mathVal = req.body.result.parameters.mathVal;
+    /*var mathVal = req.body.result.parameters.mathVal;
 
     var result = 0;
     
@@ -36,10 +36,10 @@ restService.post('/echo', function(req, res) {
     default:
         speech = req.body.result.parameters.math : "Please choose amoung the four options";
         break;
-    }
+    }*/
     return res.json({
-        speech: result,
-        displayText: result,
+        speech: speech,
+        displayText: speech,
         source: 'mel-webhook'
     });
 });
