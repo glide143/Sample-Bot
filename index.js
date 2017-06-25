@@ -36,8 +36,8 @@ restService.post('/echo', function(req, res) {
         break;
     }
     return res.json({
-        speech: sum,
-        displayText: sum,
+        speech: result,
+        displayText: result,
         source: 'mel-webhook'
     });
 });
