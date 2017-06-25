@@ -13,9 +13,12 @@ restService.use(bodyParser.json());
 
 restService.post('/echo', function(req, res) {
     var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Di ko alam ang pinag sasabi mo."
+    
+    var num = req.body.result.parameters.num1;
+    
     return res.json({
-        speech: speech,
-        displayText: speech,
+        speech: num,
+        displayText: num,
         source: 'mel-webhook'
     });
 });
