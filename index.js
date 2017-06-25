@@ -13,7 +13,7 @@ restService.use(bodyParser.json());
 
 
 restService.post('/echo', function(req, res) {
-    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.math ? req.body.result.parameters.mathVal : "Di ko alam ang pinag sasabi mo.";
+    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.mathVal ? req.body.result.parameters.mathVal : "Di ko alam ang pinag sasabi mo.";
 
     /*var mathVal = req.body.result.parameters.mathVal;
 
