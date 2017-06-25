@@ -11,19 +11,11 @@ restService.use(bodyParser.urlencoded({
 
 restService.use(bodyParser.json());
 
-restService.post('/echo', function(req, res) {
-    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Seems like some problem. Speak again."
-    return res.json({
-        speech: speech,
-        displayText: speech,
-        source: 'webhook-echo-sample'
-    });
-});
 
-/*restService.post('/echo', function(req, res) {
+restService.post('/echo', function(req, res) {
     var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.math ? req.body.result.parameters.mathVal : "Di ko alam ang pinag sasabi mo.";
 
-    var mathVal = req.body.result.parameters.mathVal;
+    /*var mathVal = req.body.result.parameters.mathVal;
 
     var result = 0;
     
@@ -45,13 +37,13 @@ restService.post('/echo', function(req, res) {
     default:
         speech = req.body.result.parameters.math : "Please choose amoung the four options";
         break;
-    }
+    }*/
     return res.json({
         speech: speech,
         displayText: speech,
         source: 'mel-webhook'
     });
-});*/
+});
 
 /*
 function sumHandler (var num1,var num2) {
