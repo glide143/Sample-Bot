@@ -15,7 +15,7 @@ restService.post('/echo', function(req, res) {
     var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Di ko alam ang pinag sasabi mo."
     
     var num = req.body.result.parameters.num1;
-    var num = req.body.result.parameters.num2;
+    var num1 = req.body.result.parameters.num2;
     var sum = num + num1;
     
     return res.json({
