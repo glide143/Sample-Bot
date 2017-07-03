@@ -18,7 +18,7 @@ restService.post('/echo', function(req, res) {
 
 
     var result = 0;
-    
+    var actions = req.body.result.action;
     var num = Number(req.body.result.parameters.num1);
     var num1 = Number(req.body.result.parameters.num2);
     switch(speech){
@@ -44,7 +44,7 @@ restService.post('/echo', function(req, res) {
         break;*/
     }
     return res.json({
-        speech: result,
+        speech: result +actions,
         displayText: result,
         source: 'mel-webhook'
     });
