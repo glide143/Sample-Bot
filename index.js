@@ -16,20 +16,23 @@ restService.use(bodyParser.json());
 
 var valuesb = "we";
 
+var city_value = "makati";
 
 
-function weather(city_value){
 request.get("http://query.yahooapis.com/v1/public/yql?q=select+%2A+from+weather.forecast+where+woeid+in+%28select+woeid+from+geo.places%281%29+where+text%3D%27"+city_value+"%27%29&format=json", function(error, response, body) {
-    var jsonObject = JSON.parse(body);
+   var jsonObject = JSON.parse(body);
     var jsonval =  JSON.stringify(jsonObject, null,3);
     var query = jsonObject.query;
     var result = query.results;
     var channel = result.channel;
     var location = channel.location;
-    console.log(location.city);
+    var item = channel.item;
+    var unit = channel.units;
+    var condition = item.condition;
+    valuesb = "Today's forcast for " +location.city+ " is " +condition.temp+ ""+unit.temperature+ " and "+condition.text;
   //console.log(body);
 });
-}
+
 
 
 restService.post('/echo', function(req, res) {
@@ -46,13 +49,7 @@ restService.post('/echo', function(req, res) {
     var num1 = Number(req.body.result.parameters.num2);
 
     if(actions == "yahooWeatherForecast"){
-
-        valuesb = weather("makati");
-
-         result = "Sorry,Not yet avaiable out developer is still fixing it. He has a love problem" + location;
-
-
-
+         result = valuesb;
     }else if(actions == "calculator"){
         switch(speech){
        case "Add":
@@ -77,7 +74,7 @@ restService.post('/echo', function(req, res) {
 
 
     return res.json({
-        speech: result + valuesb,
+        speech: result ,
         displayText: result,
         source: 'mel-webhook'
     });
