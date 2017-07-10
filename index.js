@@ -14,7 +14,21 @@ restService.use(bodyParser.json());
 
 
 restService.post('/echo', function(req, res) {
-    var location ="hi";
+
+
+
+    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.mathVal ? req.body.result.parameters.mathVal : "Di ko alam ang pinag sasabi mo.";
+
+
+
+    var result = 0;
+    var actions = req.body.result.action;
+    var num = Number(req.body.result.parameters.num1);
+    var num1 = Number(req.body.result.parameters.num2);
+
+    if(actions == "yahooWeatherForecast"){
+
+         var location ="";
 
     request("http://query.yahooapis.com/v1/public/yql?q=select+%2A+from+weather.forecast+where+woeid+in+%28select+woeid+from+geo.places%281%29+where+text%3D%27makati%27%29&format=json", function(error, response, body) {
     var jsonObject = JSON.parse(body);
@@ -28,17 +42,8 @@ restService.post('/echo', function(req, res) {
 });
 
 
-    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.mathVal ? req.body.result.parameters.mathVal : "Di ko alam ang pinag sasabi mo.";
 
-
-
-    var result = 0;
-    var actions = req.body.result.action;
-    var num = Number(req.body.result.parameters.num1);
-    var num1 = Number(req.body.result.parameters.num2);
-
-    if(actions == "yahooWeatherForecast"){
-        result = "Sorry,Not yet avaiable out developer is still fixing it. He has a love problem"
+        result = "Sorry,Not yet avaiable out developer is still fixing it. He has a love problem" + location;
     }else if(actions == "calculator"){
         switch(speech){
        case "Add":
