@@ -12,7 +12,7 @@ restService.use(bodyParser.urlencoded({
 
 restService.use(bodyParser.json());
 
-var city_value = "";
+
 
 var valuesb = "we";
 
