@@ -21,7 +21,11 @@ restService.post('/echo', function(req, res) {
     var actions = req.body.result.action;
     var num = Number(req.body.result.parameters.num1);
     var num1 = Number(req.body.result.parameters.num2);
-    switch(speech){
+
+    if(actions == "yahooWeatherForecast"){
+        result = "Sorry,Not yet avaiable out developer is still fixing it. He has a love problem"
+    }else if(actions == "calculator"){
+        switch(speech){
        case "Add":
             result = num + num1;
             break;
@@ -34,13 +38,17 @@ restService.post('/echo', function(req, res) {
         case "Divide":
             result = num / num1;
             break;
-     /*
     default:
-        speech = req.body.result.parameters.math : "Please choose amoung the four options";
-        break;*/
+        result = "Sorry I dont know the answer!"
+        break;
     }
+    }else{
+       result = "Sorry i cant understand you"
+    }
+
+
     return res.json({
-        speech: result +actions,
+        speech: result,
         displayText: result,
         source: 'mel-webhook'
     });
