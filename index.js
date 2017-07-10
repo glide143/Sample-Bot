@@ -13,25 +13,6 @@ restService.use(bodyParser.json());
 
 
 restService.post('/echo', function(req, res) {
-    var weather = require("Openweather-Node");
-    var weatherResult = "";
-    weather.setAPPID("89fc2de7571360f9c3ef61c2a8a50aba");
-    //set the culture
-    weather.setCulture("fr");
-    //set the forecast type
-    weather.setForecastType("daily"); //or "" for 3 hours forecast
-    weather.now("Lyon",function(err, aData){
-    if(err) console.log(err);
-    else{
-        console.log(aData.getKelvinTemp())
-        console.log(aData.getDegreeTemp())
-        console.log(aData.getFahrenheitTemp())
-
-        weatherResult = aData.getKelvinTemp + " " +aData.getDegreeTemp() + " " + aData.getFahrenheitTemp();
-    }
-    });
-
-
 
     var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.mathVal ? req.body.result.parameters.mathVal : "Di ko alam ang pinag sasabi mo.";
 
@@ -68,7 +49,7 @@ restService.post('/echo', function(req, res) {
 
 
     return res.json({
-        speech: result + weatherResult,
+        speech: result,
         displayText: result,
         source: 'mel-webhook'
     });
