@@ -32,7 +32,7 @@ restService.post('/echo', function(req, res) {
         case "Subtract":
             result = num - num1;
             break;
-        case "Multipy":
+        case "Multiply":
             result = num * num1;
             break;
         case "Divide":
