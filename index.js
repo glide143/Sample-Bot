@@ -14,6 +14,7 @@ restService.use(bodyParser.json());
 
 restService.post('/echo', function(req, res) {
     var weather = require("Openweather-Node");
+    var weatherResult = "";
     weather.setAPPID("89fc2de7571360f9c3ef61c2a8a50aba");
     //set the culture
     weather.setCulture("fr");
@@ -25,6 +26,8 @@ restService.post('/echo', function(req, res) {
         console.log(aData.getKelvinTemp())
         console.log(aData.getDegreeTemp())
         console.log(aData.getFahrenheitTemp())
+
+        weatherResult = aData.getKelvinTemp + " " +aData.getDegreeTemp() + " " + aData.getFahrenheitTemp();
     }
     });
 
@@ -65,7 +68,7 @@ restService.post('/echo', function(req, res) {
 
 
     return res.json({
-        speech: result,
+        speech: result + weatherResult,
         displayText: result,
         source: 'mel-webhook'
     });
