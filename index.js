@@ -2,7 +2,7 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-var request = require("request");
+
 
 const restService = express();
 
@@ -27,7 +27,7 @@ restService.post('/echo', function(req, res) {
     var num1 = Number(req.body.result.parameters.num2);
 
     if(actions == "yahooWeatherForecast"){
-
+        var request = require('request');
          var location ="";
 
     request("http://query.yahooapis.com/v1/public/yql?q=select+%2A+from+weather.forecast+where+woeid+in+%28select+woeid+from+geo.places%281%29+where+text%3D%27makati%27%29&format=json", function(error, response, body) {
