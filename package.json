@@ -4,7 +4,7 @@
   "description": "Webhook",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node sample.js"
   },
   "author": "Melchizedek Aguinaldo",
   "dependencies": {
