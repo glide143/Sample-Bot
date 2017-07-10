@@ -18,6 +18,20 @@ var valuesb = "we";
 
 
 
+function weather(city_value){
+request.get("http://query.yahooapis.com/v1/public/yql?q=select+%2A+from+weather.forecast+where+woeid+in+%28select+woeid+from+geo.places%281%29+where+text%3D%27"+city_value+"%27%29&format=json", function(error, response, body) {
+    var jsonObject = JSON.parse(body);
+    var jsonval =  JSON.stringify(jsonObject, null,3);
+    var query = jsonObject.query;
+    var result = query.results;
+    var channel = result.channel;
+    var location = channel.location;
+    console.log(location.city);
+  //console.log(body);
+});
+}
+
+
 restService.post('/echo', function(req, res) {
 
 
@@ -33,18 +47,7 @@ restService.post('/echo', function(req, res) {
 
     if(actions == "yahooWeatherForecast"){
 
-        city_value = "makati";
-       function(){ request("http://query.yahooapis.com/v1/public/yql?q=select+%2A+from+weather.forecast+where+woeid+in+%28select+woeid+from+geo.places%281%29+where+text%3D%27"+city_value+"%27%29&format=json", function(error, response, body) {
-    var jsonObject = JSON.parse(body);
-    var jsonval =  JSON.stringify(jsonObject, null,3);
-    var query = jsonObject.query;
-    var result = query.results;
-    var channel = result.channel;
-    var location = channel.location;
-    console.log(location.city);
-    valuesb = location.city;
-    //console.log(body);
-});}
+        valuesb = weather("makati");
 
          result = "Sorry,Not yet avaiable out developer is still fixing it. He has a love problem" + location;
 
