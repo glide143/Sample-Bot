@@ -29,7 +29,7 @@ request.get("http://query.yahooapis.com/v1/public/yql?q=select+%2A+from+weather.
     var item = channel.item;
     var unit = channel.units;
     var condition = item.condition;
-    valuesb = "Today's forcast for " +location.city+ " is " +condition.temp+ ""+unit.temperature+ " and "+condition.text;
+    valuesb = "Today's forcast for " +location.city+ " is " +condition.temp+ " "+unit.temperature+ "ahrenheit and "+condition.text;
   //console.log(body);
 });
 
