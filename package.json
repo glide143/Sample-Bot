@@ -2,7 +2,7 @@
   "name": "webhook",
   "version": "1.0.0",
   "description": "Webhook",
-  "main": "index.js",
+  "main": "sample.js",
   "scripts": {
     "start": "node sample.js"
   },
