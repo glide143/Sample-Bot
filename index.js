@@ -20,7 +20,7 @@ var city_value = "makati";
 
 
 
-function getWeather(city){
+function getWeather(){
     request.get("http://query.yahooapis.com/v1/public/yql?q=select+%2A+from+weather.forecast+where+woeid+in+%28select+woeid+from+geo.places%281%29+where+text%3D%27"+city_value+"%27%29&format=json", function(error, response, body) {
    var jsonObject = JSON.parse(body);
     var jsonval =  JSON.stringify(jsonObject, null,3);
@@ -51,7 +51,7 @@ restService.post('/echo', function(req, res) {
     var num1 = Number(req.body.result.parameters.num2);
 
     if(actions == "yahooWeatherForecast"){
-         result = valuesb;
+         result = getWeather();
     }else if(actions == "calculator"){
         switch(speech){
        case "Add":
