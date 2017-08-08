@@ -52,10 +52,10 @@ function callback(error, response, body) {
     valuesb = "Today's forcast for " +location.city+ " is " +condition.temp+ " "+unit.temperature+ "ahrenheit and "+condition.text;
 }
 
-
+request(options, callback);
 
 restService.post('/echo', function(req, res) {
-    request(options, callback);
+    
     var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.mathVal ? req.body.result.parameters.mathVal : "Di ko alam ang pinag sasabi mo.";
     var result = 0;
     var actions = req.body.result.action;
