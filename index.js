@@ -18,13 +18,7 @@ var valuesb = " ";
 
 var city_value = "makati";
 
-
-
-
-
-restService.post('/echo', function(req, res) {
-
-    request.get("http://query.yahooapis.com/v1/public/yql?q=select+%2A+from+weather.forecast+where+woeid+in+%28select+woeid+from+geo.places%281%29+where+text%3D%27"+city_value+"%27%29&format=json", 
+ /*request.get("http://query.yahooapis.com/v1/public/yql?q=select+%2A+from+weather.forecast+where+woeid+in+%28select+woeid+from+geo.places%281%29+where+text%3D%27"+city_value+"%27%29&format=json", 
 function(error, response, body) {
    var jsonObject = JSON.parse(body);
     var jsonval =  JSON.stringify(jsonObject, null,3);
@@ -36,24 +30,17 @@ function(error, response, body) {
     var unit = channel.units;
     var condition = item.condition;
     valuesb = "Today's forcast for " +location.city+ " is " +condition.temp+ " "+unit.temperature+ "ahrenheit and "+condition.text;
-});
+});*/
 
+var options = {
+    url: 'http://query.yahooapis.com/v1/public/yql?q=select+%2A+from+weather.forecast+where+woeid+in+%28select+woeid+from+geo.places%281%29+where+text%3D%27'+city_value+'%27%29&format=json',
+  headers: {
+    'User-Agent': 'request'
+  }
+};
 
-
-
-    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.mathVal ? req.body.result.parameters.mathVal : "Di ko alam ang pinag sasabi mo.";
-
-
-
-    var result = 0;
-    var actions = req.body.result.action;
-    var num = Number(req.body.result.parameters.num1);
-    var num1 = Number(req.body.result.parameters.num2);
-
-    if(actions == "yahooWeatherForecast"){
-          request.get("http://query.yahooapis.com/v1/public/yql?q=select+%2A+from+weather.forecast+where+woeid+in+%28select+woeid+from+geo.places%281%29+where+text%3D%27"+city_value+"%27%29&format=json", 
-function(error, response, body) {
-   var jsonObject = JSON.parse(body);
+function callback(error, response, body) {
+  var jsonObject = JSON.parse(body);
     var jsonval =  JSON.stringify(jsonObject, null,3);
     var query = jsonObject.query;
     var result = query.results;
@@ -62,8 +49,21 @@ function(error, response, body) {
     var item = channel.item;
     var unit = channel.units;
     var condition = item.condition;
-    result = "Today's forcast for " +location.city+ " is " +condition.temp+ " "+unit.temperature+ "ahrenheit and "+condition.text;
-});
+    valuesb = "Today's forcast for " +location.city+ " is " +condition.temp+ " "+unit.temperature+ "ahrenheit and "+condition.text;
+}
+
+
+
+restService.post('/echo', function(req, res) {
+    request(options, callback);
+    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.mathVal ? req.body.result.parameters.mathVal : "Di ko alam ang pinag sasabi mo.";
+    var result = 0;
+    var actions = req.body.result.action;
+    var num = Number(req.body.result.parameters.num1);
+    var num1 = Number(req.body.result.parameters.num2);
+
+    if(actions == "yahooWeatherForecast"){
+         result = valuesb;
     }else if(actions == "calculator"){
         switch(speech){
        case "Add":
