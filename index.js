@@ -14,7 +14,7 @@ restService.use(bodyParser.json());
 
 
 
-var valuesb = "we";
+var valuesb = " ";
 
 var city_value = "makati";
 
