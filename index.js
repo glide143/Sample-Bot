@@ -19,7 +19,9 @@ var valuesb = "we";
 var city_value = "makati";
 
 
-request.get("http://query.yahooapis.com/v1/public/yql?q=select+%2A+from+weather.forecast+where+woeid+in+%28select+woeid+from+geo.places%281%29+where+text%3D%27"+city_value+"%27%29&format=json", function(error, response, body) {
+
+function getWeather(city){
+    request.get("http://query.yahooapis.com/v1/public/yql?q=select+%2A+from+weather.forecast+where+woeid+in+%28select+woeid+from+geo.places%281%29+where+text%3D%27"+city_value+"%27%29&format=json", function(error, response, body) {
    var jsonObject = JSON.parse(body);
     var jsonval =  JSON.stringify(jsonObject, null,3);
     var query = jsonObject.query;
@@ -32,8 +34,8 @@ request.get("http://query.yahooapis.com/v1/public/yql?q=select+%2A+from+weather.
     valuesb = "Today's forcast for " +location.city+ " is " +condition.temp+ " "+unit.temperature+ "ahrenheit and "+condition.text;
   //console.log(body);
 });
-
-
+    return valuesb;
+}
 
 restService.post('/echo', function(req, res) {
 
