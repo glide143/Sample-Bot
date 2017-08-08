@@ -51,7 +51,19 @@ function(error, response, body) {
     var num1 = Number(req.body.result.parameters.num2);
 
     if(actions == "yahooWeatherForecast"){
-         result = valuesb;
+          request.get("http://query.yahooapis.com/v1/public/yql?q=select+%2A+from+weather.forecast+where+woeid+in+%28select+woeid+from+geo.places%281%29+where+text%3D%27"+city_value+"%27%29&format=json", 
+function(error, response, body) {
+   var jsonObject = JSON.parse(body);
+    var jsonval =  JSON.stringify(jsonObject, null,3);
+    var query = jsonObject.query;
+    var result = query.results;
+    var channel = result.channel;
+    var location = channel.location;
+    var item = channel.item;
+    var unit = channel.units;
+    var condition = item.condition;
+    result = "Today's forcast for " +location.city+ " is " +condition.temp+ " "+unit.temperature+ "ahrenheit and "+condition.text;
+});
     }else if(actions == "calculator"){
         switch(speech){
        case "Add":
