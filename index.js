@@ -32,12 +32,7 @@ function(error, response, body) {
     valuesb = "Today's forcast for " +location.city+ " is " +condition.temp+ " "+unit.temperature+ "ahrenheit and "+condition.text;
 });*/
 
-var options = {
-    url: 'http://query.yahooapis.com/v1/public/yql?q=select+%2A+from+weather.forecast+where+woeid+in+%28select+woeid+from+geo.places%281%29+where+text%3D%27'+city_value+'%27%29&format=json',
-  headers: {
-    'User-Agent': 'request'
-  }
-};
+
 
 function callback(error, response, body) {
   var jsonObject = JSON.parse(body);
@@ -52,10 +47,16 @@ function callback(error, response, body) {
     valuesb = "Today's forcast for " +location.city+ " is " +condition.temp+ " "+unit.temperature+ "ahrenheit and "+condition.text;
 }
 
-request(options, callback);
+
 
 restService.post('/echo', function(req, res) {
-    
+    var options = {
+        url: 'http://query.yahooapis.com/v1/public/yql?q=select+%2A+from+weather.forecast+where+woeid+in+%28select+woeid+from+geo.places%281%29+where+text%3D%27'+city_value+'%27%29&format=json',
+        headers: {
+            'User-Agent': 'request'
+        }
+    };
+    request(options, callback);
     var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.mathVal ? req.body.result.parameters.mathVal : "Di ko alam ang pinag sasabi mo.";
     var result = 0;
     var actions = req.body.result.action;
