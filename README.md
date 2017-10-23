@@ -2,4 +2,4 @@
 Master
 developer
 Hello Master
->>>>>>> sample-develop
+sample-develop
